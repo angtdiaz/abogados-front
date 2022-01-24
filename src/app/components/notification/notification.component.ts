@@ -1,4 +1,5 @@
 import { Input, Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-notification',
@@ -38,6 +39,10 @@ export class NotificationComponent {
         const index: number = this.alerts.indexOf(alert);
         this.alerts.splice(index, 1);
     }
+
+
+
+    agendarCita() { }
 }
 
 export interface IAlert {
@@ -46,3 +51,4 @@ export interface IAlert {
     message: string;
     icon?: string;
 }
+

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-navigation',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-    constructor() { }
+    constructor(private modalService: NgbModal) {
 
-    ngOnInit() {}
+    }
 
+
+    ngOnInit() { }
+    openModal(modal) {
+        this.modalService.open(modal);
+    }
 }

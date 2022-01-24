@@ -18,7 +18,7 @@
         </div>
         <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
     </div>
-    <!-- <div class="main">
+    <div class="main">
         <app-basicelements></app-basicelements>
         <app-navigation></app-navigation>
         <div class="section">
@@ -26,20 +26,103 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="tim-title">
-                            <h3>Progress Bar</h3>
+                            <h3>Mis Citas</h3>
                             <br />
                         </div>
-                        <ngb-progressbar type="success" class="mt-0" [value]="25">25</ngb-progressbar><br>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">
+                                        Abogado
+                                    </th>
+                                    <th scope="col">
+                                        Hora
+                                    </th>
+                                    <th scope="col">
+                                        Fecha
+                                    </th>
+                                    <th scope="col">
+                                        Calificación
+                                    </th>
+                                    <th scope="col">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Angie Tuarez
+                                    </td>
+                                    <td>
+                                        09:00 a 10:00
+                                    </td>
+                                    <td>
+                                        24/01/2022
+                                    </td>
+                                    <td>
+                                        <a (click)="calificar(content)"
+                                            class="btn-sm btn-outline-default btn-round">Calificar</a>
+                                    </td>
+                                    <td>
+                                        <a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                                class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg></a>
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue"
+                                                class="bi bi-info-circle-fill ml-2" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Javier Vinueza
+                                    </td>
+                                    <td>
+                                        10:00 a 11:00
+                                    </td>
+                                    <td>
+                                        28/01/2022
+                                    </td>
+                                    <td>
+                                        <a (click)="calificar(content)"
+                                            class="btn-sm btn-outline-default btn-round">Calificar</a>
+                                    </td>
+                                    <td>
+                                        <a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                                                class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg></a>
+                                        <a>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue"
+                                                class="bi bi-info-circle-fill ml-2" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                                            </svg>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <ngb-progressbar type="success" class="mt-0" [value]="25">25</ngb-progressbar><br>
                         <ngb-progressbar type="info" class="mt-0" [value]="50"><span class="h6 mb-0">Copying file <b>2
                                     of 4</b> ...</span></ngb-progressbar><br>
                         <ngb-progressbar type="warning" class="mt-0" [value]="75" [striped]="true" [animated]="true">
                             <i>50%</i>
                         </ngb-progressbar><br>
                         <ngb-progressbar type="danger" class="mt-0" [value]="100" [striped]="true">Completed!
-                        </ngb-progressbar>
+                        </ngb-progressbar> -->
 
                     </div>
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="tim-title">
                             <h3>Pagination</h3>
                             <br />
@@ -49,10 +132,10 @@
                         <br />
                         <ngb-pagination [collectionSize]="100" [(page)]="page1" [maxSize]="5" [rotate]="true">
                         </ngb-pagination>
-                    </div>
+                    </div> -->
                 </div>
                 <br />
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-6">
                         <div class="tim-title">
                             <h3>Navigation Tabs</h3>
@@ -95,19 +178,19 @@
                         <span class="label label-warning">Warning</span>
                         <span class="label label-danger">Danger</span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="section section-notifications" id="notifications">
             <div class="container">
                 <div class="tim-title">
-                    <h3>Notification</h3>
+                    <h3>Calificar Abogado</h3>
                 </div>
+                <app-notification></app-notification>
             </div>
-            <app-notification></app-notification>
         </div>
-        <app-typography></app-typography>
-        <div class="section javascript-components">
+        <!-- <app-typography></app-typography> -->
+        <!-- <div class="section javascript-components">
             <div class="container">
                 <div class="tim-title">
                     <h2>Angular Native Components</h2>
@@ -197,8 +280,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="section" id="carousel">
+        </div> -->
+        <!-- <div class="section" id="carousel">
             <div class="container">
                 <div class="tim-title">
                     <h3>Carousel</h3>
@@ -399,6 +482,47 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div> -->
+        </div> -->
+    </div>
 </div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title text-center">Calificar Abogado</h5>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="form-group">
+                    <label class="mr-3">Seleccione calificación:</label>
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <label class="mr-3">Ingrese un comentario:</label>
+                <div class="form-group">
+
+                    <textarea name="comentario" id="" cols="30" rows="5"></textarea>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-link"
+                (click)="modal.close('Close click')">Calificar</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" class="btn btn-danger btn-link" (click)="modal.close('Close click')">Salir</button>
+        </div>
+    </div>
+</ng-template>
