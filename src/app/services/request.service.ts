@@ -77,9 +77,9 @@ export class RequestService {
     }
 
 
-    async getCalificacionesPorAbogado(id) {
+    async getCalificacionesPorAbogado(id: any) {
         return new Promise(resolve => {
-            this.http.get(`${environment.apiUrl}/abogados/${{ id }}/calificaciones`).subscribe((response: any) => {
+            this.http.get(`${environment.apiUrl}/abogados/${id}/calificaciones`).subscribe((response: any) => {
                 resolve([true, response.data]);
             }, (error: any) => {
                 error.status

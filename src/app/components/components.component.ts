@@ -24,7 +24,7 @@ export class ComponentsComponent implements OnInit {
     calificacion: any = {}
     abogado: any = {}
     abogado_id: number
-    calif
+    calificacionesPorAbogado = []
     constructor(private modalService: NgbModal, private requestService: RequestService) { }
 
     ngOnInit() {
@@ -83,6 +83,12 @@ export class ComponentsComponent implements OnInit {
         this.calificacion = {}
     }
 
+
+    openCita(modal, abogado) {
+        this.abogado_id = abogado.id
+        this.modalService.open(modal);
+
+    }
     async agendarCita() {
         this.cita.status = 1
         this.cita.usuario_id = 1
@@ -102,11 +108,14 @@ export class ComponentsComponent implements OnInit {
         this.getCitas();
     }
 
-    openCita(modal, abogado) {
-        this.abogado_id = abogado.id
-        this.modalService.open(modal);
+    abrirAbogado(modal, abogado) {
+        if (abogado) {
+            this.abogado = abogado
+            this.modalService.open(modal, { size: "lg" });
+        }
 
     }
+
 
     async getCitas() {
         const response = await this.requestService.getCitas()
@@ -140,11 +149,19 @@ export class ComponentsComponent implements OnInit {
 
 
 
-    abrirAbogado(modal, abogado) {
-        if (abogado) {
-            this.abogado = abogado
-            this.modalService.open(modal, { size: "lg" });
-        }
+    openCalificaciones(modal, abogado) {
+        this.calificacionesPorAbogado = []
+        this.abogado_id = abogado.id
+        this.modalService.open(modal);
+        this.getCalificacionesPorAbogado()
 
+    }
+
+
+    async getCalificacionesPorAbogado() {
+        const response = await this.requestService.getCalificacionesPorAbogado(this.abogado_id)
+        if (response[0]) {
+            this.calificacionesPorAbogado = response[1]
+        }
     }
 }

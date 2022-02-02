@@ -41,16 +41,16 @@
                     </a>
                 </li> -->
                 <li class="nav-item">
-                    <a class="nav-link">Inicio</a>
+                    <a (click)="goToInicio()" class="nav-link">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/basicelements" class="nav-link">Abogados</a>
+                    <a (click)="goToAbogados()" class="nav-link">Abogados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link">Mis Citas</a>
+                    <a (click)="goToMisCitas()" class="nav-link">Mis Citas</a>
                 </li>
                 <li class="nav-item">
-                    <a (click)="cerrarSesion()" class="btn btn-outline-danger btn-round">Cerrar sesión</a>
+                    <a class="btn btn-outline-danger btn-round">Cerrar sesión</a>
                 </li>
                 <!-- <li class="nav-item" *ngIf="!isHome()">
                     <a [routerLink]="['/home']" *ngIf="!isDocumentation()" class="nav-link"><i

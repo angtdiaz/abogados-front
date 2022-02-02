@@ -72,7 +72,18 @@ export class NavbarComponent implements OnInit {
             return false;
         }
     }
-    cerrarSesion() {
-        // this.router.navigateByUrl('/home');
+    goToAbogados() {
+        document.getElementById("abogados").scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+    }
+    goToMisCitas() {
+        document.getElementById("citas").scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
+    }
+
+    goToInicio() {
+        document.getElementById("inicio").scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+
     }
 }
+
