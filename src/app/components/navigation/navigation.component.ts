@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestService } from 'app/services/request.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
     selector: 'app-navigation',
@@ -8,13 +11,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NavigationComponent implements OnInit {
 
-    constructor(private modalService: NgbModal) {
+    constructor(private modalService: NgbModal, private requesteService: RequestService) { }
 
+
+    ngOnInit() {
     }
 
 
-    ngOnInit() { }
-    openModal(modal) {
-        this.modalService.open(modal);
-    }
 }

@@ -11,6 +11,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 
 import { ComponentsModule } from './components/components.module';
 import { ExamplesModule } from './examples/examples.module';
+import { HttpClientModule } from '@angular/common/http';
+import { NotifierModule } from 'angular-notifier';
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { ExamplesModule } from './examples/examples.module';
     ComponentsModule,
     ExamplesModule,
     AppRoutingModule,
+    HttpClientModule,
+    NotifierModule
   ],
   providers: [],
   bootstrap: [AppComponent]

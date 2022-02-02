@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { RequestService } from 'app/services/request.service';
 
 @Component({
   selector: 'app-basicelements',
@@ -6,12 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./basicelements.component.scss']
 })
 export class BasicelementsComponent implements OnInit {
-    simpleSlider = 40;
-    doubleSlider = [20, 60];
-    state_default: boolean = true;
-    focus: any;
-    constructor() { }
 
-    ngOnInit() {}
+  constructor(private modalService: NgbModal, private requestService: RequestService) { }
+
+  ngOnInit() {
+  }
 
 }

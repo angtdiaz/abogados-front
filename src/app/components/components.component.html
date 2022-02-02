@@ -1,16 +1,11 @@
 <div class="wrapper">
+    <!-- VISTA INCIAL -->
     <div class="page-header section-dark" style="background-image: url('assets/img/fondo.png')">
         <div class="filter"></div>
         <div class="content-center">
             <div class="container">
                 <div class="title-brand">
                     <h1 class="presentation-title">ABONET</h1>
-                    <!-- <div class="fog-low">
-                            <img src="assets/img/fog-low.png" alt="">
-                        </div>
-                        <div class="fog-low right">
-                            <img src="assets/img/fog-low.png" alt="">
-                        </div> -->
                 </div>
 
                 <h2 class="presentation-subtitle text-center">“Dándote siempre la mejor opción”</h2>
@@ -18,13 +13,62 @@
         </div>
         <div class="moving-clouds" style="background-image: url('assets/img/clouds.png'); "></div>
     </div>
+
     <div class="main">
-        <app-basicelements></app-basicelements>
-        <app-navigation></app-navigation>
+        <!-- ABOGADOS -->
+        <div class="container">
+            <div class="tim-title">
+                <h2>ABOGADOS</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="mr-3">Cuidad:</label>
+                        <select (change)="getAbogados()" [(ngModel)]="ciudad">
+                            <option value="">Todas</option>
+                            <option [ngValue]="ciudad" *ngFor="let ciudad of ciudades">
+                                {{ciudad}}</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="mr-3">Especialidad:</label>
+                        <select (change)="getAbogados()" [(ngModel)]="especialidad">
+                            <option value="">Todas</option>
+                            <option [ngValue]="especialidad" *ngFor="let especialidad of especialidades">
+                                {{especialidad}}</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4" *ngFor="let abogado of abogados">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../../../assets/img/abogado.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{abogado.nombre}} {{abogado.apellido}}</h5>
+                            <p class="card-text">
+                                Abg. {{abogado.especialidades[0].especialidad}}
+                            </p>
+                            <button (click)="abrirAbogado(abogadoModal,abogado)" type="button"
+                                class="btn btn-outline-default btn-round">Ver</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- TABLA DE CITAS -->
         <div class="section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="tim-title">
                             <h3>Mis Citas</h3>
                             <br />
@@ -49,24 +93,25 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngFor="let cita of citas">
                                 <tr>
                                     <td>
-                                        Angie Tuarez
+                                        {{cita.abogado.nombre}} {{cita.abogado.apellido}}
                                     </td>
                                     <td>
-                                        09:00 a 10:00
+                                        {{ cita.hora}}
                                     </td>
                                     <td>
-                                        24/01/2022
+                                        {{cita.fecha}}
                                     </td>
                                     <td>
-                                        <a (click)="calificar(content)"
+                                        <a (click)="calificar(content1,cita.abogado.id)"
                                             class="btn-sm btn-outline-default btn-round">Calificar</a>
                                     </td>
                                     <td>
-                                        <a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
-                                                class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                        <a (click)="deleteCita(cita.id)"><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="16" height="16" fill="red" class="bi bi-trash-fill"
+                                                viewBox="0 0 16 16">
                                                 <path
                                                     d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                             </svg></a>
@@ -78,451 +123,173 @@
                                             </svg>
                                         </a>
                                     </td>
-
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Javier Vinueza
-                                    </td>
-                                    <td>
-                                        10:00 a 11:00
-                                    </td>
-                                    <td>
-                                        28/01/2022
-                                    </td>
-                                    <td>
-                                        <a (click)="calificar(content)"
-                                            class="btn-sm btn-outline-default btn-round">Calificar</a>
-                                    </td>
-                                    <td>
-                                        <a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
-                                                class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                            </svg></a>
-                                        <a>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="blue"
-                                                class="bi bi-info-circle-fill ml-2" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-                                            </svg>
-                                        </a>
-                                    </td>
-
                                 </tr>
                             </tbody>
                         </table>
-                        <!-- <ngb-progressbar type="success" class="mt-0" [value]="25">25</ngb-progressbar><br>
-                        <ngb-progressbar type="info" class="mt-0" [value]="50"><span class="h6 mb-0">Copying file <b>2
-                                    of 4</b> ...</span></ngb-progressbar><br>
-                        <ngb-progressbar type="warning" class="mt-0" [value]="75" [striped]="true" [animated]="true">
-                            <i>50%</i>
-                        </ngb-progressbar><br>
-                        <ngb-progressbar type="danger" class="mt-0" [value]="100" [striped]="true">Completed!
-                        </ngb-progressbar> -->
-
                     </div>
-                    <!-- <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Pagination</h3>
-                            <br />
-                        </div>
-                        <ngb-pagination [collectionSize]="70" [(page)]="page" aria-label="Default pagination">
-                        </ngb-pagination>
-                        <br />
-                        <ngb-pagination [collectionSize]="100" [(page)]="page1" [maxSize]="5" [rotate]="true">
-                        </ngb-pagination>
-                    </div> -->
                 </div>
                 <br />
-                <!-- <div class="row">
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Navigation Tabs</h3>
-                        </div>
-
-                        <div class="nav-tabs-navigation">
-                            <div class="nav-tabs-wrapper">
-                                <ngb-tabset [justify]="'center'">
-                                    <ngb-tab title="Home">
-                                        <ng-template ngbTabContent>
-                                            <p>Larger, yet dramatically thinner. More powerful, but remarkably power
-                                                efficient. With a smooth metal surface that seamlessly meets the new
-                                                Retina HD display.</p>
-                                        </ng-template>
-                                    </ngb-tab>
-                                    <ngb-tab title="Profile">
-                                        <ng-template ngbTabContent>
-                                            <p>Here is your profile.</p>
-                                        </ng-template>
-                                    </ngb-tab>
-                                    <ngb-tab title="Messages">
-                                        <ng-template ngbTabContent>
-                                            <p>Here are your messages.</p>
-                                        </ng-template>
-                                    </ngb-tab>
-                                </ngb-tabset>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Labels</h3>
-                        </div>
-                        <span class="label label-default">Default</span>
-                        <span class="label label-primary">Primary</span>
-                        <span class="label label-info">Info</span>
-                        <span class="label label-success">Success</span>
-                        <span class="label label-warning">Warning</span>
-                        <span class="label label-danger">Danger</span>
-                    </div>
-                </div> -->
             </div>
         </div>
-        <div class="section section-notifications" id="notifications">
-            <div class="container">
-                <div class="tim-title">
-                    <h3>Calificar Abogado</h3>
-                </div>
-                <app-notification></app-notification>
-            </div>
-        </div>
-        <!-- <app-typography></app-typography> -->
-        <!-- <div class="section javascript-components">
-            <div class="container">
-                <div class="tim-title">
-                    <h2>Angular Native Components</h2>
-                </div>
-                <div class="row" id="modals">
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Modal</h3>
-                        </div>
-                        <app-modal-component></app-modal-component>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Popovers</h3>
-                        </div>
-
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="right"
-                            ngbPopover="Here will be some very useful information about this popover."
-                            popoverTitle="Popover on right">
-                            on right
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="top"
-                            ngbPopover="Here will be some very useful information about this popover."
-                            popoverTitle="Popover on top">
-                            on top
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="left"
-                            ngbPopover="Here will be some very useful information about this popover."
-                            popoverTitle="Popover on left">
-                            on left
-                        </button>
-
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="bottom"
-                            ngbPopover="Here will be some very useful information about this popover."
-                            popoverTitle="Popover on bottom">
-                            on bottom
-                        </button>
-
-                    </div>
-                    <br />
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Datepicker</h3>
-                        </div>
-                        <div class="row">
-                            <div class='col-sm-6'>
-                                <form class="form-inline">
-                                    <div class="form-group">
-                                        <div class="input-group date" [ngClass]="{'input-group-focus':focus===true}">
-                                            <input class="form-control" placeholder="yyyy-mm-dd" name="dp"
-                                                [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
-                                                (click)="d.toggle()" (focus)="focus=true" (blur)="focus=false" />
-                                            <div class="input-group-append">
-                                                <span class="glyphicon glyphicon-calendar input-group-text">
-                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="tim-title">
-                            <h3>Tooltips</h3>
-                        </div>
-
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="right"
-                            ngbTooltip="Tooltip on right">
-                            on right
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="left"
-                            ngbTooltip="Tooltip on left">
-                            on left
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="top"
-                            ngbTooltip="Tooltip on top">
-                            on top
-                        </button>
-                        <button type="button" class="btn btn-outline-danger btn-round" placement="bottom"
-                            ngbTooltip="Tooltip on bottom">
-                            on bottom
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="section" id="carousel">
-            <div class="container">
-                <div class="tim-title">
-                    <h3>Carousel</h3>
-                </div>
-                <div class="row">
-                    <div class="col-md-8 mr-auto ml-auto">
-                        <div class="card page-carousel">
-                            <ngb-carousel>
-                                <ng-template ngbSlide>
-                                    <img src="./assets/img/soroush-karimi.jpg" alt="Random first slide">
-                                    <div class="carousel-caption">
-                                        <p>Somewhere</p>
-                                    </div>
-                                </ng-template>
-                                <ng-template ngbSlide>
-                                    <img src="./assets/img/federico-beccari.jpg" alt="Random second slide">
-                                    <div class="carousel-caption">
-                                        <p>Somewhere else</p>
-                                    </div>
-                                </ng-template>
-                                <ng-template ngbSlide>
-                                    <img src="./assets/img/joshua-stannard.jpg" alt="Random third slide">
-                                    <div class="carousel-caption">
-                                        <p>Here it is</p>
-                                    </div>
-                                </ng-template>
-                            </ngb-carousel>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-dark section-nucleo-icons">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <h2 class="title">Nucleo Icons</h2><br />
-                        <p class="description">
-                            Now UI Kit comes with 100 custom icons made by our friends from NucleoApp. The official
-                            package contains over 2.100 thin icons which are looking great in combination with Now UI
-                            Kit Make sure you check all of them and use those that you like the most.
-                        </p><br />
-                        <a [routerLink]="['/nucleoicons']" class="btn btn-danger btn-round">View Demo Icons</a>
-                        <a href="https://nucleoapp.com/?ref=1712" class="btn btn-outline-danger btn-round"
-                            target="_blank">View All Icons</a>
-                    </div>
-
-                    <div class="col-lg-6 col-md-12">
-                        <div class="icons-container">
-                            <i class="nc-icon nc-time-alarm"></i>
-                            <i class="nc-icon nc-atom"></i>
-                            <i class="nc-icon nc-camera-compact"></i>
-                            <i class="nc-icon nc-watch-time"></i>
-                            <i class="nc-icon nc-key-25"></i>
-                            <i class="nc-icon nc-diamond"></i>
-                            <i class="nc-icon nc-user-run"></i>
-                            <i class="nc-icon nc-layout-11"></i>
-                            <i class="nc-icon nc-badge"></i>
-                            <i class="nc-icon nc-bulb-63"></i>
-                            <i class="nc-icon nc-favourite-28"></i>
-                            <i class="nc-icon nc-planet"></i>
-                            <i class="nc-icon nc-tie-bow"></i>
-                            <i class="nc-icon nc-zoom-split"></i>
-                            <i class="nc-icon nc-cloud-download-93"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-dark">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Completed with examples</h2>
-                        <p class="description">The kit comes with three pre-built pages to help you get started faster.
-                            You can change the text and images and you're good to go. More importantly, looking at them
-                            will give you a picture of what you can built with this powerful kit.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-image section-login" style="background-image: url('assets/img/login-image.jpg');">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-12 ml-auto mr-auto">
-                        <div class="card card-register">
-                            <h3 class="title">Welcome</h3>
-                            <div class="social-line text-center">
-                                <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </div>
-                            <form class="register-form">
-                                <label>Email</label>
-                                <div class="input-group form-group-no-border"
-                                    [ngClass]="{'input-group-focus':focus===true}">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="nc-icon nc-email-85"></i>
-                                        </span>
-                                    </div>
-
-                                    <input type="text" class="form-control" placeholder="Email" (focus)="focus=true"
-                                        (blur)="focus=false">
-                                </div>
-
-                                <label>Password</label>
-                                <div class="input-group form-group-no-border"
-                                    [ngClass]="{'input-group-focus':focus1===true}">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="nc-icon nc-key-25"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Password" (focus)="focus1=true"
-                                        (blur)="focus1=false">
-                                </div>
-                                <button class="btn btn-danger btn-block btn-round">Register</button>
-                            </form>
-                            <div class="forgot">
-                                <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
-                            </div>
-                        </div>
-                        <div class="col text-center" routerLinkActive="active">
-                            <a [routerLink]="['/signup']" class="btn btn-outline-neutral btn-round btn-lg">View Register
-                                Page</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section section-dark">
-            <div class="container">
-                <div class="row example-page">
-                    <div class="col-md-6 text-center" routerLinkActive="active">
-                        <a [routerLink]="['/landing']">
-                            <img src="./assets/img/examples/landing-page.JPG" alt="Rounded Image"
-                                class="img-rounded img-responsive" style="width: 100%">
-                            <a [routerLink]="['/landing']" class="btn btn-outline-neutral btn-round">Landing Page</a>
-                        </a>
-                    </div>
-
-                    <div class="col-md-6 text-center" routerLinkActive="active">
-                        <a [routerLink]="['/user-profile']">
-                            <img src="./assets/img/examples/profile-page.JPG" alt="Rounded Image"
-                                class="img-rounded img-responsive" style="width: 100%">
-                            <a [routerLink]="['/user-profile']" class="btn btn-outline-neutral btn-round">Profile
-                                Page</a>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-md-8 ml-auto mr-auto text-center">
-                        <h2 class="title">Do you like what you see?</h2>
-                        <p class="description">Cause if you do, it can be yours for Free. Hit the button below and
-                            download it. Start a new project or give an old Bootstrap 4 project a new look.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 download-area ml-auto mr-auto">
-                        <a href="https://www.creative-tim.com/product/paper-kit-2"
-                            class="btn btn-warning btn-round">Download free HTML</a>
-                        <a href="https://www.creative-tim.com/product/paper-kit-2-angular"
-                            class="btn btn-danger btn-round">Download free Angular</a>
-                    </div>
-                </div>
-                <div class="row justify-content-md-center sharing-area text-center">
-                    <div class="text-center col-md-12 col-lg-8">
-                        <h3>Thank you for supporting us!</h3>
-                    </div>
-                    <div class="text-center col-md-12 col-lg-8">
-                        <a href="#pablo" class="btn btn-twitter-bg twitter-sharrre btn-round" rel="tooltip"
-                            title="Tweet!">
-                            <i class="fa fa-twitter"></i> Twitter
-                        </a>
-                        <a href="#pablo" class="btn btn-google-bg linkedin-sharrre btn-round" rel="tooltip"
-                            title="Share!">
-                            <i class="fa fa-google-plus"></i> Google
-                        </a>
-                        <a href="#pablo" class="btn btn-facebook-bg facebook-sharrre btn-round" rel="tooltip"
-                            title="Share!">
-                            <i class="fa fa-facebook-square"></i> Facebook
-                        </a>
-                        <a href="https://github.com/creativetimofficial/paper-kit"
-                            class="btn btn-github-bg btn-github sharrre btn-round" rel="tooltip" title="Star on Github">
-                            <i class="fa fa-github"></i> Star
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
+
 </div>
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title text-center">Calificar Abogado</h5>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="row">
-            <div class="col-md-12">
 
-                <div class="form-group">
-                    <label class="mr-3">Seleccione calificación:</label>
-                    <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+<!-- CALIFICACION DE CITAS -->
+
+<ng-template #content1 let-modal>
+    <form (ngSubmit)="crearCalificacion()" #form="ngForm">
+        <div class="modal-header">
+            <h5 class="modal-title text-center">Calificar Abogado</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <label class="mr-3">Seleccione calificación:</label>
+                        <select name="calificacion" [(ngModel)]="calificacion.calificacion">
+                            <option [ngValue]="1">1</option>
+                            <option [ngValue]="2">2</option>
+                            <option [ngValue]="3">3</option>
+                            <option [ngValue]="4">4</option>
+                            <option [ngValue]="5">5</option>
+                        </select>
+                    </div>
+                    <label class="mr-3">Ingrese un comentario:</label>
+                    <div class="form-group">
+                        <textarea [(ngModel)]="calificacion.comentario" name="comentario" id="" cols="30"
+                            rows="5"></textarea>
+                    </div>
                 </div>
-                <label class="mr-3">Ingrese un comentario:</label>
-                <div class="form-group">
 
-                    <textarea name="comentario" id="" cols="30" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="right-side">
+                <button type="button" class="btn btn-danger btn-link"
+                    (click)="modal.close('Close click')">Salir</button>
+            </div>
+            <div class="divider"></div>
+            <div class="left-side">
+                <button type="submit" class="btn btn-default btn-link">Calificar</button>
+            </div>
+        </div>
+    </form>
+</ng-template>
+
+<!-- AGENDAR CITA -->
+
+<ng-template #content let-modal>
+    <form (ngSubmit)="agendarCita()" #form="ngForm">
+        <div class="modal-header">
+            <h5 class="modal-title text-center">Programar Cita</h5>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12"><span style="font-weight: bold;">Disponibilidad es de Lunes a
+                        Viernes</span>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
 
+                    <div class="form-group">
+                        <label class="mr-3">Seleccione Fecha:</label>
+                        <input [(ngModel)]="cita.fecha" type="date" name="fecha">
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label class="mr-3">Seleccione un Horario:</label>
+                        <select [(ngModel)]="cita.hora" name="hora">
+                            <option>9h00 a 10h00</option>
+                            <option>10h00 a 11h00</option>
+                            <option>11h00 a 12h00</option>
+                            <option>12h00 a 13h00</option>
+                            <option>14h00 a 15h00</option>
+                            <option>15h00 a 16h00</option>
+                            <option>16h00 a 17h00</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <div class="left-side">
-            <button type="button" class="btn btn-default btn-link"
-                (click)="modal.close('Close click')">Calificar</button>
+        <div class="modal-footer">
+            <div class="right-side">
+                <button type="button" class="btn btn-danger btn-link"
+                    (click)="modal.close('Close click')">Salir</button>
+            </div>
+            <div class="divider"></div>
+            <div class="left-side">
+                <button type="submit" class="btn btn-default btn-link">Agendar
+                    Cita</button>
+            </div>
         </div>
-        <div class="divider"></div>
-        <div class="right-side">
-            <button type="button" class="btn btn-danger btn-link" (click)="modal.close('Close click')">Salir</button>
+    </form>
+
+</ng-template>
+
+<ng-template #abogadoModal let modal>
+    <form>
+        <!-- MOSTRAR ABOGADO SELECCIONADO - AGENDAR ABOGADO -->
+        <div class="section section-navbars pt-0">
+            <div class="container" id="menu-dropdown">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="tim-title">
+                            <h3>Angie Tuarez</h3>
+                        </div>
+                        <img src="../../../assets/img/abogado.png" class="card-img-top img-fluid" alt="...">
+
+                    </div>
+                    <div class="col-md-6 mt-5" style=" align-self: center;">
+                        <div class="card" style="width: 100%; ">
+                            <div class="card-body">
+                                <h5 class="card-title">INFORMACIÓN</h5>
+                                <h6 class="card-subtitle mb-2 text-muted" [(ngModel)]="abogado.name" name="nombre"></h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="card-text">Teléfono:</p>
+                                        <p class="card-text">Correo:</p>
+                                        <p class="card-text">Dirección:</p>
+                                        <p class="card-text">Disponible:</p>
+                                        <p class="card-text">Hora:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="card-text" [(ngModel)]="abogado.telefono" name="telefono"></p>
+                                        <p class="card-text" [(ngModel)]="abogado.correo" name="correo"></p>
+                                        <p class="card-text" [(ngModel)]="abogado.ciudad" name="ciudad"></p>
+                                        <p class="card-text">Lunes a Viernes</p>
+                                        <p class="card-text">09h00 a 15h00</p>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <button type="button" class="btn btn-sm btn-outline-default btn-round mr-5 ">Ver
+                                            calificaciones</button>
+                                    </div>
+                                    <div class="col-md-6 pt-3">
+
+                                        <button (click)="openModal(content)" type="button"
+                                            class="btn btn-outline-default btn-round btn-sm ">Agendar Cita</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
 </ng-template>
