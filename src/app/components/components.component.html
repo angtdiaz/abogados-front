@@ -234,7 +234,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="tim-title">
-                            <h3>Angie Tuarez</h3>
+                            <h3 [(ngModel)]="abogado.nombre" name="nomvre"></h3>
                         </div>
                         <img src="../../../assets/img/abogado.png" class="card-img-top img-fluid" alt="...">
                     </div>
@@ -242,7 +242,7 @@
                         <div class="card" style="width: 100%; ">
                             <div class="card-body">
                                 <h5 class="card-title">INFORMACIÓN</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">jj</h6>
+                                <h6 class="card-subtitle mb-2 text-muted"></h6>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p class="card-text">Teléfono:</p>
@@ -252,9 +252,9 @@
                                         <p class="card-text">Hora:</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p class="card-text">h</p>
-                                        <p class="card-text">u</p>
-                                        <p class="card-text">j</p>
+                                        <p class="card-text" [(ngModel)]="abogado.telefono" name="telefono"></p>
+                                        <p class="card-text" [(ngModel)]="abogado.correo" name="correo"></p>
+                                        <p class="card-text" [(ngModel)]="abogado.ciudad" name="ciudad"></p>
                                         <p class="card-text">Lunes a Viernes</p>
                                         <p class="card-text">09h00 a 15h00</p>
                                     </div>
@@ -267,7 +267,7 @@
                                             calificaciones</button>
                                     </div>
                                     <div class="col-md-6 pt-3">
-                                        <button (click)="openModal(content)" type="button"
+                                        <button (click)="openCita(content,abogado)" type="button"
                                             class="btn btn-outline-default btn-round btn-sm ">Agendar Cita</button>
                                     </div>
                                 </div>

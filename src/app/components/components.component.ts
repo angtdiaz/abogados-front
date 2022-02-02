@@ -57,10 +57,7 @@ export class ComponentsComponent implements OnInit {
         }
     }
 
-    openModal(modal) {
-        this.modalService.open(modal);
 
-    }
 
     calificar(modal, abogado_id) {
         if (abogado_id) {
@@ -77,7 +74,6 @@ export class ComponentsComponent implements OnInit {
         if (response) {
             Swal.fire({
                 title: 'Calificación enviada',
-                showCancelButton: true,
                 confirmButtonColor: '#343a40',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Aceptar',
@@ -85,6 +81,31 @@ export class ComponentsComponent implements OnInit {
         }
         this.modalService.dismissAll();
         this.calificacion = {}
+    }
+
+    async agendarCita() {
+        this.cita.status = 1
+        this.cita.usuario_id = 1
+        this.cita.abogado_id = this.abogado_id
+        const response = await this.requestService.createCita(this.cita)
+        if (response) {
+            if (response) {
+                Swal.fire({
+                    title: 'Cita Agendada',
+                    confirmButtonColor: '#343a40',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Aceptar',
+                })
+            }
+        }
+        this.modalService.dismissAll();
+        this.getCitas();
+    }
+
+    openCita(modal, abogado) {
+        this.abogado_id = abogado.id
+        this.modalService.open(modal);
+
     }
 
     async getCitas() {
@@ -116,14 +137,6 @@ export class ComponentsComponent implements OnInit {
         });
     }
 
-    async agendarCita() {
-        const response = await this.requestService.createCita(this.cita)
-        if (response) {
-            this.modalService.dismissAll();
-            this.getCitas();
-        }
-
-    }
 
 
 
