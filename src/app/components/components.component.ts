@@ -57,7 +57,10 @@ export class ComponentsComponent implements OnInit {
         }
     }
 
+    openModal(modal) {
+        this.modalService.open(modal);
 
+    }
 
     calificar(modal, abogado_id) {
         if (abogado_id) {

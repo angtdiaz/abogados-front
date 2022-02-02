@@ -145,7 +145,6 @@
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-12">
-
                     <div class="form-group">
                         <label class="mr-3">Seleccione calificación:</label>
                         <select name="calificacion" [(ngModel)]="calificacion.calificacion">
@@ -162,7 +161,6 @@
                             rows="5"></textarea>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="modal-footer">
@@ -193,15 +191,12 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-
                     <div class="form-group">
                         <label class="mr-3">Seleccione Fecha:</label>
                         <input [(ngModel)]="cita.fecha" type="date" name="fecha">
                     </div>
-
                 </div>
                 <div class="col-md-6">
-
                     <div class="form-group">
                         <label class="mr-3">Seleccione un Horario:</label>
                         <select [(ngModel)]="cita.hora" name="hora">
@@ -212,13 +207,9 @@
                             <option>14h00 a 15h00</option>
                             <option>15h00 a 16h00</option>
                             <option>16h00 a 17h00</option>
-
                         </select>
                     </div>
-
                 </div>
-
-
             </div>
         </div>
         <div class="modal-footer">
@@ -233,7 +224,6 @@
             </div>
         </div>
     </form>
-
 </ng-template>
 
 <ng-template #abogadoModal let modal>
@@ -247,7 +237,6 @@
                             <h3>Angie Tuarez</h3>
                         </div>
                         <img src="../../../assets/img/abogado.png" class="card-img-top img-fluid" alt="...">
-
                     </div>
                     <div class="col-md-6 mt-5" style=" align-self: center;">
                         <div class="card" style="width: 100%; ">
@@ -278,13 +267,10 @@
                                             calificaciones</button>
                                     </div>
                                     <div class="col-md-6 pt-3">
-
                                         <button (click)="openModal(content)" type="button"
                                             class="btn btn-outline-default btn-round btn-sm ">Agendar Cita</button>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
